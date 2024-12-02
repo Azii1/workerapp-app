@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'Cloning repository...'
                 // Adjust the repository URL if needed
-                git 'https://github.com/your-repo/your-app.git'
+                git 'https://github.com/Azii1/workerapp-app.git'
             }
         }
 
