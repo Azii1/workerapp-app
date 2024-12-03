@@ -10,7 +10,6 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Cloning repository...'
-                // Adjust the repository URL if needed
                 git 'https://github.com/Azii1/workerapp-app.git'
             }
         }
