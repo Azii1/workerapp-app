@@ -1,14 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
-
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
 COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o /app
-
-FROM base AS final
+RUN dotnet restore && dotnet publish -c Release -o out
+FROM mcr.microsoft.com/dotnet/runtime:6.0
 WORKDIR /app
-COPY --from=build /app .
-ENTRYPOINT ["dotnet", "Worker.dll"]
-
+COPY --from=build /app/out .
+CMD ["dotnet", "Worker.dll"]
